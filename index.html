@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Saaqi-Host for 5.05</title>
-    <link rel="stylesheet" type="text/css" href="./payloads/exploit.css" />
+    <link rel="stylesheet" type="text/css" href="/src/payloads/exploit.css" />
   </head>
 
   <body class="main">
@@ -13,7 +13,7 @@
     ><span id="clock" class="icon-alarm"></span>
     <h1 id="msgs">Saaqi-Host for 5.05</h1>
     <div class="iframe">
-      <iframe class="frame" src="./blank.html" name="exp-loader"></iframe>
+      <iframe class="frame" src="/src/blank.html" name="exp-loader"></iframe>
     </div>
     <div id="all">
       <div class="main_buttons">
@@ -115,8 +115,71 @@
         </button>
       </div>
     </div>
-    <script defer src="./main.js"></script>
-    <script src="./calendar.js"></script>
-    <script src="./cache.js"></script>
+    <script>
+      // SETUP MESSAGES ============================
+      function mouseOutMsg() {
+        msgs.innerHTML = "Saaqi-Host for 5.05";
+      }
+
+      // SETUP HTML PAYLOAD LINKS ============================
+      function backall() {
+        all.style.display = "block";
+        backups.style.display = "none";
+      }
+
+      function backuptools() {
+        all.style.display = "none";
+        backups.style.display = "block";
+      }
+
+      function goldhen23() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/goldhen23.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+
+      function goldhenbeta() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/goldhenbeta.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+
+      function load_updatesdisable() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/blocker.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+
+      function load_updatesenable() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/unblock.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+
+      function load_dbBackup() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/db_backup.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+
+      function load_dbRestore() {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = "/src/payloads/db_restore.html";
+        link.target = "exp-loader";
+        link.click();
+      }
+    </script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
