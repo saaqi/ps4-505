@@ -1,0 +1,29 @@
+CACHE MANIFEST
+# Saaqi HOST 5.05 Created on Date: 2026-02-08 - Time: 01-14-02
+
+CACHE:
+cache.js
+calendar.js
+payloads/unblock.html
+payloads/goldhenbeta.html
+payloads/goldhen23505.bin
+payloads/goldhen23.html
+payloads/exploit_bin.js
+payloads/exploit.min.css
+payloads/exploit.js
+payloads/exploit.css
+payloads/Dumper.bin
+payloads/db_restore.html
+payloads/db_backup.html
+payloads/Database_Restore.bin
+payloads/Database_Backup.bin
+payloads/blocker.html
+payloads/back.png
+payloads/goldhen.bin
+blank.html
+favicon.ico
+index.html
+main.js
+
+NETWORK:
+*

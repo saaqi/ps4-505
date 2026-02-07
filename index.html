@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-US" manifest="offlinexmb.cache">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Saaqi-Host for 5.05</title>
+    <link rel="stylesheet" type="text/css" href="./payloads/exploit.css" />
+  </head>
+
+  <body class="main">
+    <span id="date" class="icons icon-calendar"></span
+    ><span id="clock" class="icon-alarm"></span>
+    <h1 id="msgs">Saaqi-Host for 5.05</h1>
+    <div class="iframe">
+      <iframe class="frame" src="./blank.html" name="exp-loader"></iframe>
+    </div>
+    <div id="all">
+      <div class="main_buttons">
+        <button
+          class="gold main icon-unlocked"
+          onMouseOver="msgs.innerHTML='GoldHen v2.3'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            goldhen23();
+            return false;
+          ">
+          GoldHen V2.3
+        </button>
+      </div>
+      <div class="seperator"></div>
+      <div class="main_buttons">
+        <button
+          class="gold other icon-unlocked"
+          onMouseOver="msgs.innerHTML='GoldHEN v2.4b18.8'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            goldhenbeta();
+            return false;
+          ">
+          GoldHEN v2.4b18.8
+        </button>
+      </div>
+      <!-- <div class="seperator"></div> -->
+      <div class="group-buttons">
+        <button
+          class="icon-copy group-button"
+          onMouseOver="msgs.innerHTML='Backup Tools'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            backuptools();
+            return false;
+          ">
+          Other Tools
+        </button>
+      </div>
+    </div>
+
+    <div class="exp_buttons">
+      <div id="backups" style="display: none">
+        <button
+          class="icon-upload3 back-button"
+          onmouseover="msgs.innerHTML = 'Back to The Main Menu'"
+          onmouseout="msgs.innerHTML = 'Saaqi-Host Host 5.05'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            backall();
+            return false;
+          ">
+          Back to Menu
+        </button>
+
+        <br />
+
+        <button
+          class="icon-files-empty"
+          onMouseOver="msgs.innerHTML='DB Backup'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            load_dbBackup();
+            return false;
+          ">
+          DB Backup
+        </button>
+        <button
+          class="icon-upload3"
+          onMouseOver="msgs.innerHTML='DB Restore'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            load_dbRestore();
+            return false;
+          ">
+          DB Restore
+        </button>
+        <br />
+        <button
+          class="icon-cancel-circle"
+          onMouseOver="msgs.innerHTML='Disable Updates'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            load_updatesdisable();
+            return false;
+          ">
+          Disable Updates
+        </button>
+        <button
+          class="icon-upload2"
+          onMouseOver="msgs.innerHTML='Enable Updates'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            load_updatesenable();
+            return false;
+          ">
+          Enable Updates
+        </button>
+      </div>
+    </div>
+    <script defer src="./main.js"></script>
+    <script src="./calendar.js"></script>
+    <script src="./cache.js"></script>
+  </body>
+</html>
