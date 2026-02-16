@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-US" manifest="offlinexmb.cache">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Saaqi-Host for 5.05</title>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+  </head>
+
+  <body class="main">
+    <div id="date" class="icons icon-calendar"></div>
+    <div id="clock" class="icon-alarm"></div>
+    <h1 id="msgs">Saaqi-Host for 5.05</h1>
+    <div class="iframe">
+      <iframe class="frame" src="./blank.html" name="exp-loader"></iframe>
+    </div>
+    <div id="allPayloads">
+      <div class="main_buttons">
+        <button
+          class="gold main icon-unlocked"
+          onMouseOver="msgs.innerHTML='GoldHen v2.3'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/goldhen23.html');
+            return false;
+          ">
+          GoldHen V2.3
+        </button>
+      </div>
+      <div class="main_buttons">
+        <button
+          class="gold other icon-unlocked"
+          onMouseOver="msgs.innerHTML='GoldHEN v2.4b18.9'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/goldhenbeta.html');
+            return false;
+          ">
+          GoldHEN v2.4b18.9
+        </button>
+      </div>
+      <div class="group-buttons">
+        <button
+          class="icon-copy group-button"
+          onMouseOver="msgs.innerHTML='Backup Tools'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            allBtn();
+            return false;
+          ">
+          OTHER TOOLS
+        </button>
+      </div>
+    </div>
+
+    <div class="exp_buttons">
+      <div id="toolsPayloads" style="display: none">
+        <button
+          class="icon-upload3 back-button"
+          onmouseover="msgs.innerHTML = 'Back to The Main Menu'"
+          onmouseout="msgs.innerHTML = 'Saaqi-Host Host 5.05'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            backBtn();
+            return false;
+          ">
+          BACK TO MENU
+        </button>
+
+        <br />
+
+        <button
+          class="icon-upload2"
+          onMouseOver="msgs.innerHTML='BinLoader Port 9020'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/binloader.html');
+            return false;
+          ">
+          Bin Loader
+        </button>
+
+        <br />
+
+        <button
+          class="icon-files-empty"
+          onMouseOver="msgs.innerHTML='DB Backup'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/batabase_backup.html');
+            return false;
+          ">
+          DB Backup
+        </button>
+        <button
+          class="icon-upload3"
+          onMouseOver="msgs.innerHTML='DB Restore'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/database_restore.html');
+            return false;
+          ">
+          DB Restore
+        </button>
+
+        <br />
+
+        <button
+          class="icon-cancel-circle"
+          onMouseOver="msgs.innerHTML='Disable Updates'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/disable_updates.html');
+            return false;
+          ">
+          Disable Updates
+        </button>
+        <button
+          class="icon-upload2"
+          onMouseOver="msgs.innerHTML='Enable Updates'"
+          onMouseOut="mouseOutMsg();"
+          onclick="
+            loadPayload('./payloads/enable_updates.html');
+            return false;
+          ">
+          Enable Updates
+        </button>
+      </div>
+    </div>
+    <script src="./assets/calendar.js"></script>
+    <script src="./assets/cache.js"></script>
+    <script>
+      // SETUP MESSAGES ============================
+      function mouseOutMsg() {
+        msgs.innerHTML = "Saaqi-Host for 5.05";
+      }
+      // SETUP TOOLS MENU ============================
+      var allPayloads = document.getElementById("allPayloads");
+      var toolsPayloads = document.getElementById("toolsPayloads");
+      function backBtn() {
+        allPayloads.style.display = "block";
+        toolsPayloads.style.display = "none";
+      }
+      function allBtn() {
+        allPayloads.style.display = "none";
+        toolsPayloads.style.display = "block";
+      }
+      // SETUP HTML PAYLOAD LINKS ============================
+      function loadPayload(url) {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.href = url;
+        link.target = "exp-loader";
+        link.click();
+      }
+    </script>
+  </body>
+</html>
