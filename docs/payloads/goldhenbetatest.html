@@ -20,11 +20,10 @@
     </div>
     <div id="fail" class="info" style="display: none">GoldHEN v2.4 Beta</div>
     <script>
-      var SetHEN = "yes";
-      var bin = "goldhen.bin";
+      var bin = 'goldhen.bin';
 
       function getScript(source, callback) {
-        var gs = document.createElement("script");
+        var gs = document.createElement('script');
         gs.src = source;
         gs.onload = callback;
         gs.async = false;
@@ -32,7 +31,7 @@
       }
 
       function loadScript() {
-        getScript("505exploit.js", function () {
+        getScript('505exploit.js', function () {
           setTimeout(exploit, 1500);
         });
       }
