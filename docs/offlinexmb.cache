@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Saaqi HOST 5.05 Created on Date: 2026-03-14 - Time: 22-45-58
+# Saaqi HOST 5.05 Created on Date: 2026-03-14 - Time: 23-06-03
 
 CACHE:
 assets/cache.js
@@ -23,8 +23,6 @@ payloads/goldhen.bin
 payloads/goldhen23.html
 payloads/goldhen23505.bin
 payloads/goldhenbeta.html
-payloads/505exploit.js
-payloads/goldhenbetatest.html
 test/505exploit.js
 test/672entrypoint.js
 test/672kexploit.js
