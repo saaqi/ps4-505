@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# PSFree-Lapse
+# PSFree-Lapse Date: 2026-03-24 - Time: 21-26-14
 
 cache.html
 index.html
@@ -9,6 +9,7 @@ index.html
 psfree_lapse_helpers.js
 kpatches.js
 payload.bin
+goldhen23505.bin
 psfree.js
 lapse.js
 main.js

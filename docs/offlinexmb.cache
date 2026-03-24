@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Saaqi HOST 5.05 Created on Date: 2026-03-14 - Time: 23-06-03
+# Saaqi HOST 5.05 Created on Date: 2026-03-24 - Time: 21-26-14
 
 CACHE:
 assets/cache.js
@@ -7,6 +7,7 @@ assets/calendar.js
 assets/style.css
 blank.html
 favicon.ico
+index.html
 payloads/batabase_backup.bin
 payloads/batabase_backup.html
 payloads/binloader.html
@@ -35,7 +36,7 @@ test/payload.bin
 test/ps4jb.png
 test/psfree.js
 test/psfree_lapse_helpers.js
-index.html
+test/goldhen23505.bin
 
 NETWORK:
 *
