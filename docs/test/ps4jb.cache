@@ -1,18 +1,21 @@
 CACHE MANIFEST
-# PSFree-Lapse Date: 2026-03-24 - Time: 21-26-14
+# Saaqi HOST 5.05 Created on 08-04-2026-11-57-17
 
-cache.html
-index.html
+CACHE:
 505exploit.js
 672entrypoint.js
 672kexploit.js
-psfree_lapse_helpers.js
-kpatches.js
-payload.bin
+bg.jpg
+cache.html
 goldhen23505.bin
-psfree.js
-lapse.js
+henlogo.png
+index.html
+lapse_exploit.js
+lapse_setup.js
 main.js
+payload.bin
+psfree.js
+psfree_lapse_shared.js
 
 NETWORK:
 *

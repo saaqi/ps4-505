@@ -1,4 +1,4 @@
-// PSFree & Lapse Helper Subroutines
+// PSFree & Lapse Shared Variables & Subroutines
 
 const off_js_butterfly = 0x8;
 const off_js_inline_prop = 0x10;
@@ -16,9 +16,7 @@ const MB = 0x100000; //KB * KB;
 const page_size = 0x4000; //16 * KB; // page size on ps4
 const is_ps4 = 1;
 
-var ssv_len;
 var mem;
-var text_magic;
 
 function isIntegerFix(x) {
   if (typeof x !== 'number') return 0;
@@ -583,107 +581,6 @@ class BufferView extends Uint8Array {
     this._dview.setUint32(offset, values[0], true);
     this._dview.setUint32(offset + 4, values[1], true);
   }
-}
-
-function sread64(str, offset) {
-  const low = str.charCodeAt(offset) | (str.charCodeAt(offset + 1) << 8) | (str.charCodeAt(offset + 2) << 16) | (str.charCodeAt(offset + 3) << 24);
-  const high = str.charCodeAt(offset + 4) | (str.charCodeAt(offset + 5) << 8) | (str.charCodeAt(offset + 6) << 16) | (str.charCodeAt(offset + 7) << 24);
-  return new Int(low, high);
-}
-
-class Reader {
-  constructor(rstr, rstr_view) {
-    this.rstr = rstr;
-    this.rstr_view = rstr_view;
-    this.m_data = rstr_view.read64(off_strimpl_m_data);
-  }
-  read8_at(offset) {
-    return this.rstr.charCodeAt(offset);
-  }
-  read32_at(offset) {
-    const str = this.rstr;
-    return (str.charCodeAt(offset) | (str.charCodeAt(offset + 1) << 8) | (str.charCodeAt(offset + 2) << 16) | (str.charCodeAt(offset + 3) << 24)) >>> 0;
-  }
-  read64_at(offset) {
-    return sread64(this.rstr, offset);
-  }
-  read64(addr) {
-    this.rstr_view.write64(off_strimpl_m_data, addr);
-    return sread64(this.rstr, 0);
-  }
-  set_addr(addr) {
-    this.rstr_view.write64(off_strimpl_m_data, addr);
-  }
-  // remember to use this to fix up the StringImpl before freeing it
-  restore() {
-    this.rstr_view.write64(off_strimpl_m_data, this.m_data);
-    const original_strlen = ssv_len - off_size_strimpl;
-    this.rstr_view.write32(off_strimpl_strlen, original_strlen);
-  }
-}
-
-function get_view_vector(view) {
-  if (!ArrayBuffer.isView(view)) {
-    throw TypeError(`object not a JSC::JSArrayBufferView: ${view}`);
-  }
-  if (mem === null) {
-    throw Error('mem is not initialized. make_arw() must be called first to initialize mem.');
-  }
-  return mem.addrof(view).readp(off_view_m_vector);
-}
-
-function rw_write64(u8_view, offset, value) {
-  if (!(value instanceof Int)) {
-    throw TypeError('write64 value must be an Int');
-  }
-  const low = value.lo;
-  const high = value.hi;
-  for (var i = 0; i < 4; i++) {
-    u8_view[offset + i] = (low >>> (i * 8)) & 0xff;
-  }
-  for (var i = 0; i < 4; i++) {
-    u8_view[offset + 4 + i] = (high >>> (i * 8)) & 0xff;
-  }
-}
-
-// these values came from analyzing dumps from CelesteBlue
-function check_magic_at(p, is_text) {
-  const value = [p.read64(0), p.read64(8)];
-  return value[0].eq(text_magic[0]) && value[1].eq(text_magic[1]);
-}
-
-function find_base(addr, is_text, is_back) {
-  // align to page size
-  addr = align(addr, page_size);
-  text_magic = [
-    new Int(0xe5894855, 0x56415741),
-    new Int(0x54415541, 0x8d485053)
-  ];
-  const offset = (is_back ? -1 : 1) * page_size;
-  while (true) {
-    if (check_magic_at(addr, is_text)) {
-      break;
-    }
-    addr = addr.add(offset);
-  }
-  return addr;
-}
-
-async function get_patches(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw Error(`Network response was not OK, status: ${response.status}\n` + `failed to fetch: ${url}`);
-  }
-  return response.arrayBuffer();
-}
-
-function Init_Globals() {
-  if (config_target < 0x650)
-    ssv_len = 0x58;
-  else if (config_target < 0x900)
-    ssv_len = 0x48;
-  else
-    ssv_len = 0x50;
 }
 
 window.script_loaded = 1;
