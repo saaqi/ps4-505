@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Saaqi HOST 5.05 Created on 15-05-2026-13-14-04
+# Saaqi HOST 5.05 Created on 16-05-2026-10-53-34
 
 CACHE:
 blank.html
@@ -24,8 +24,6 @@ payloads/goldhen.bin
 payloads/goldhen23.html
 payloads/goldhen23505.bin
 payloads/goldhenbeta.html
-payloads/nanodns-ps4_0.2.elf
-payloads/nano_dns.html
 test/505exploit.js
 test/672entrypoint.js
 test/672kexploit.js
