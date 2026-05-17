@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Saaqi HOST 5.05 Created on Date: 2026-05-17 - Time: 12-51-06
+# Saaqi HOST 5.05 Created on Date: 2026-05-17 - Time: 13-01-13
 
 CACHE:
 505exploit.js
@@ -16,7 +16,6 @@ main.js
 payload.bin
 psfree.js
 psfree_lapse_shared.js
-nanodns-ps4.elf
 
 NETWORK:
 *
